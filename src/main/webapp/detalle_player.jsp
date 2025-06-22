@@ -29,9 +29,5 @@
     Volver al listado de usuarios
   </a>
 </p>
-<p class="mt-3">
-<a href="${pageContext.request.contextPath}/" class="btn btn-secondary">
-    Volver al inicio
-  </a>
-</p>
+
 <%@ include file="jspf/footer.jspf" %>

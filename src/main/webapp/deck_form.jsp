@@ -2,7 +2,7 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
 <%@ include file="jspf/header.jspf" %>
-
+<div class="container mt-4">
 <h1>
   <c:choose>
     <c:when test="${empty deck.id}">Nuevo Starter Deck</c:when>
@@ -71,5 +71,5 @@
   <a href="${pageContext.request.contextPath}/starter-decks"
      class="btn btn-secondary">Cancelar</a>
 </form>
-
+</div>
 <%@ include file="jspf/footer.jspf" %>

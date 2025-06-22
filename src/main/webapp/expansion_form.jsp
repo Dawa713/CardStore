@@ -2,7 +2,7 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
 <%@ include file="jspf/header.jspf" %>
-
+<div class="container mt-4">
 <h1>
   <c:choose>
     <c:when test="${empty expansion.id}">Nueva Expansión</c:when>
@@ -69,5 +69,5 @@
   <a href="${pageContext.request.contextPath}/expansions"
      class="btn btn-secondary">Cancelar</a>
 </form>
-
+</div>
 <%@ include file="jspf/footer.jspf" %>
