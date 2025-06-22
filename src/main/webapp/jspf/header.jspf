@@ -31,10 +31,10 @@
 
 <header class="d-flex flex-wrap align-items-center justify-content-center justify-content-md-between py-3 mb-4 border-bottom">
   <div class="col-md-3 mb-2 mb-md-0">
-    <a href="${pageContext.request.contextPath}/" class="d-inline-flex link-body-emphasis text-decoration-none">
+    <a href="${pageContext.request.contextPath}/Home.jsp" class="d-inline-flex link-body-emphasis text-decoration-none">
       <img src="${pageContext.request.contextPath}/images/default_card.png" style="max-height:60px;" alt="Logo">
     </a>
-    <a class="nav-link" href="${pageContext.request.contextPath}/">CardStore</a>
+    <a class="nav-link" href="${pageContext.request.contextPath}/Home.jsp">CardStore</a>
   </div>
   <ul class="nav col-12 col-md-auto mb-2 justify-content-center mb-md-0">
       <li><a href="${pageContext.request.contextPath}/players"       class="nav-link px-5 link-secondary">Players</a></li>

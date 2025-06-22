@@ -88,14 +88,15 @@ public class CRUDCardServlet extends HttpServlet {
         }
 
         Card c = new Card();
-        // Campos comunes
+
         c.setName(req.getParameter("name"));
         c.setReleaseDate(LocalDate.parse(req.getParameter("releaseDate")));
         c.setAttack(Integer.parseInt(req.getParameter("attack")));
         c.setDefense(Integer.parseInt(req.getParameter("defense")));
         c.setPrice(Float.parseFloat(req.getParameter("price")));
+        c.setFoil("on".equals(req.getParameter("foil")));
 
-        // Procesar subida de imagen
+
         Part filePart = req.getPart("imageFile");
         if (filePart != null && filePart.getSize() > 0) {
             String filename = Paths.get(filePart.getSubmittedFileName())

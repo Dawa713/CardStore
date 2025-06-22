@@ -53,7 +53,11 @@
       <input id="price" name="price" type="number" step="0.01"
              class="form-control" value="${card.price}" required/>
     </div>
-
+ <div class="form-group form-check">
+      <input id="foil" name="foil" type="checkbox" class="form-check-input"
+             ${card.foil ? 'checked' : ''}/>
+      <label for="foil" class="form-check-label">Foil?</label>
+    </div>
     <div class="mb-3">
       <label for="imageFile" class="form-label">Image File</label>
       <input id="imageFile" name="imageFile" type="file"

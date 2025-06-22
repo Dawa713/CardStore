@@ -39,8 +39,8 @@
   </form>
 
   <p class="mt-3 text-center">
-    ¿No tienes cuenta?
-    <a href="${pageContext.request.contextPath}/registro">Regístrate aquí</a>
+
+    <a href="${pageContext.request.contextPath}/registro"></a>
   </p>
 </div>
 

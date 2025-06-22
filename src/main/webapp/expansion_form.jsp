@@ -40,7 +40,7 @@
     <input id="discontinued" name="discontinued" type="checkbox"
            class="form-check-input"
            ${expansion.discontinued ? 'checked':''}/>
-    <label for="discontinued" class="form-check-label">Descontinuado</label>
+    <label for="discontinued" class="form-check-label">Descatalogado</label>
   </div>
   <div class="form-group">
     <label for="price">Precio (€)</label>
@@ -48,7 +48,6 @@
            class="form-control" value="${expansion.price}"/>
   </div>
 
-  <!-- NUEVO campo de subida de imagen -->
   <div class="form-group">
     <label for="imageFile">Imagen (jpg/png)</label>
     <input id="imageFile" name="imageFile" type="file"

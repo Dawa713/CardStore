@@ -13,7 +13,6 @@ public class Card {
     private float price;
     private String image;
 
-    // getters & setters...
 
     public int getId() { return id; }
     public void setId(int id) { this.id = id; }
