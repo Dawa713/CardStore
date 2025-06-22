@@ -6,15 +6,24 @@ import org.example.util.ConexionBD;
 import org.jdbi.v3.core.Jdbi;
 
 import javax.servlet.ServletException;
+import javax.servlet.annotation.MultipartConfig;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.*;
+import javax.servlet.http.Part;
+import java.io.File;
 import java.io.IOException;
+import java.nio.file.Paths;
 import java.time.LocalDate;
-import java.sql.Date;            // <-- import de java.sql.Date
+import java.sql.Date;
 import java.util.List;
 import java.util.Optional;
 
 @WebServlet("/starter-decks")
+@MultipartConfig(
+        fileSizeThreshold = 1024 * 1024,  // 1MB
+        maxFileSize = 5 * 1024 * 1024,     // 5MB
+        maxRequestSize = 10 * 1024 * 1024  // 10MB
+)
 public class CRUDStarterDeckServlet extends HttpServlet {
     private StarterDeckDAO dao;
 
@@ -66,29 +75,44 @@ public class CRUDStarterDeckServlet extends HttpServlet {
         String action = req.getParameter("action");
         StarterDeck d = new StarterDeck();
 
+        // Procesamos subida de archivo
+        Part filePart = req.getPart("imageFile");
+        String fileName = Paths.get(filePart.getSubmittedFileName())
+                .getFileName().toString(); // MSIE fix
+        String imageToStore = null;
+        if (fileName != null && !fileName.isEmpty()) {
+            // creamos carpeta images si no existe
+            String uploadPath = getServletContext().getRealPath("") + File.separator + "images";
+            File uploadDir = new File(uploadPath);
+            if (!uploadDir.exists()) uploadDir.mkdirs();
+            // guardamos el fichero
+            filePart.write(uploadPath + File.separator + fileName);
+            imageToStore = fileName;
+        } else {
+            // si no subió nada, usamos la existente (en update)
+            imageToStore = req.getParameter("existingImage");
+        }
+
         if (action.equals("create")) {
             d.setName(req.getParameter("name"));
-            // Conversión LocalDate -> java.sql.Date
-            LocalDate ldCreate = LocalDate.parse(req.getParameter("releaseDate"));
-            d.setReleaseDate(Date.valueOf(ldCreate));
+            LocalDate ld = LocalDate.parse(req.getParameter("releaseDate"));
+            d.setReleaseDate(Date.valueOf(ld));
             d.setDiscontinued("on".equals(req.getParameter("discontinued")));
             d.setPrice(Float.parseFloat(req.getParameter("price")));
-            d.setImage(req.getParameter("image"));
+            d.setImage(imageToStore);
             dao.insert(d);
 
         } else if (action.equals("update")) {
             d.setId(Integer.parseInt(req.getParameter("id")));
             d.setName(req.getParameter("name"));
-            // Conversión LocalDate -> java.sql.Date
-            LocalDate ldUpdate = LocalDate.parse(req.getParameter("releaseDate"));
-            d.setReleaseDate(Date.valueOf(ldUpdate));
+            LocalDate ld = LocalDate.parse(req.getParameter("releaseDate"));
+            d.setReleaseDate(Date.valueOf(ld));
             d.setDiscontinued("on".equals(req.getParameter("discontinued")));
             d.setPrice(Float.parseFloat(req.getParameter("price")));
-            d.setImage(req.getParameter("image"));
+            d.setImage(imageToStore);
             dao.update(d);
         }
 
-        // Tras crear o actualizar, volvemos al listado
         resp.sendRedirect(req.getContextPath() + "/starter-decks?action=list");
     }
 }
