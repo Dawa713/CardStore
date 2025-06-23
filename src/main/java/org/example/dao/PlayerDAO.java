@@ -14,14 +14,14 @@ import java.util.Optional;
 @RegisterRowMapper(PlayerMapper.class)
 public interface PlayerDAO {
 
-    @SqlQuery("SELECT id, username, password, email, role, last_login FROM players")
+    @SqlQuery("SELECT id, username, password, email, role,competitive, last_login FROM players")
     List<Player> listarTodos();
 
-    @SqlQuery("SELECT id, username, password, email, role, last_login FROM players WHERE id = :id")
+    @SqlQuery("SELECT id, username, password, email, role,competitive, last_login FROM players WHERE id = :id")
     Optional<Player> findById(@Bind("id") int id);
 
-    @SqlUpdate("INSERT INTO players(username, password, email, role, last_login) " +
-            "VALUES (:username, :password, :email, :role, :lastLogin)")
+    @SqlUpdate("INSERT INTO players(username, password, email, role, competitive, last_login) " +
+            "VALUES (:username, :password, :email, :role, :competitive, :lastLogin)")
     void insertar(@BindBean Player player);
 
 
@@ -34,12 +34,13 @@ public interface PlayerDAO {
            password   = :password,
            email      = :email,
            role       = :role,
+           competitive = :competitive,
            last_login = :lastLogin
      WHERE id = :id
 """)
     void actualizar(@BindBean Player player);
 
-    @SqlQuery("SELECT id, username, password, email, role, last_login "
+    @SqlQuery("SELECT id, username, password, email, role,competitive, last_login "
             + "FROM players WHERE username = :username AND password = :password")
     Optional<Player> authenticate(@Bind("username") String username,
                                   @Bind("password") String password);

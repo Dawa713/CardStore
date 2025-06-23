@@ -134,6 +134,7 @@ public class CRUDPlayerServlet extends HttpServlet {
         p.setPassword(req.getParameter("password"));
         p.setEmail(req.getParameter("email"));
         p.setRole(req.getParameter("role"));
+        p.setCompetitive("on".equals(req.getParameter("competitive")));
         p.setLastLogin(new Timestamp(System.currentTimeMillis()));
         return p;
     }

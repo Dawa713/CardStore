@@ -2,7 +2,7 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
 <%@ include file="jspf/header.jspf" %>
-
+<div class="container mt-4">
 <h1>
   <c:choose>
     <c:when test="${empty player.id}">New Player</c:when>
@@ -22,21 +22,21 @@
     </c:otherwise>
   </c:choose>
 
-  <!-- Username -->
+
   <div class="form-group">
     <label for="username">Username</label>
     <input id="username" name="username" class="form-control"
            value="${player.username}" required />
   </div>
 
-  <!-- Password -->
+
   <div class="form-group">
     <label for="password">Password</label>
     <input id="password" name="password" type="password"
            class="form-control" value="${player.password}" required />
   </div>
 
-  <!-- Email -->
+
   <div class="form-group">
     <label for="email">Email</label>
     <input id="email" name="email" type="email"
@@ -52,17 +52,14 @@
     </select>
   </div>
 
-  <!-- Last Login (solo al editar) -->
-  <c:if test="${not empty player.id}">
-    <div class="form-group">
-      <label for="lastLogin">Last Login</label>
-      <fmt:formatDate value="${player.lastLogin}"
-                      pattern="yyyy-MM-dd'T'HH:mm"
-                      var="lastLoginFmt"/>
-      <input id="lastLogin" name="lastLogin" type="datetime-local"
-             class="form-control" value="${lastLoginFmt}" />
+<div class="form-group form-check">
+      <input id="competitive" name="competitive" type="checkbox"
+             class="form-check-input"
+             ${player.competitive ? 'checked':''}/>
+      <label for="competitive" class="form-check-label">Competitive?</label>
     </div>
-  </c:if>
+
+
 
   <button type="submit" class="btn btn-primary">
     <c:choose>
@@ -73,5 +70,5 @@
   <a href="${pageContext.request.contextPath}/players"
      class="btn btn-secondary">Cancel</a>
 </form>
-
+</div>
 <%@ include file="jspf/footer.jspf" %>

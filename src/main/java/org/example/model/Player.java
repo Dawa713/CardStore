@@ -8,6 +8,8 @@ public class Player {
     private String password;
     private String email;
     private String role;
+
+    private boolean competitive;
     private Timestamp lastLogin;
 
     // Getters y setters
@@ -26,6 +28,13 @@ public class Player {
     public String getRole() { return role; }
     public void setRole(String role) { this.role = role; }
 
+
+    public boolean isCompetitive() {
+        return competitive;
+    }
+    public void setCompetitive(boolean competitive) {
+        this.competitive = competitive;
+    }
     public Timestamp getLastLogin() { return lastLogin; }
     public void setLastLogin(Timestamp lastLogin) { this.lastLogin = lastLogin; }
 }

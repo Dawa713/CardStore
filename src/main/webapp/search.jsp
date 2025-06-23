@@ -36,7 +36,7 @@
       </div>
       <div class="form-check form-check-inline">
         <input class="form-check-input" type="checkbox" name="type" id="chkDecks" value="decks">
-        <label class="form-check-label" for="chkDecks">Starter Decks</label>
+        <label class="form-check-label" for="chkDecks">Decks</label>
       </div>
     </div>
     <button id="searchBtn" type="submit" class="btn btn-primary" disabled>Search</button>

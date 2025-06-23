@@ -11,7 +11,7 @@
 </c:if>
 
 <div class="container mt-4">
-  <h1>Starter Decks</h1>
+  <h1>Decks</h1>
   <a href="${pageContext.request.contextPath}/starter-decks?action=new" class="btn btn-success mb-3">New Deck</a>
   <table class="table table-striped">
     <thead>

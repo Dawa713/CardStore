@@ -4,9 +4,11 @@
 <%@ include file="jspf/header.jspf" %>
 
 <div class="container mt-4">
+  <div class="row justify-content-center">
+    <div class="col-lg-8">
   <c:choose>
     <c:when test="${not empty deck}">
-      <h1>Starter Deck: ${deck.name}</h1>
+      <h1>Deck: ${deck.name}</h1>
       <img src="${pageContext.request.contextPath}/images/${deck.image}"
            alt="${deck.name}" style="max-width:300px;"
            onerror="this.src='${pageContext.request.contextPath}/images/default_deck.png';"/>
@@ -30,5 +32,7 @@
   <a href="${pageContext.request.contextPath}/starter-decks?action=list"
      class="btn btn-secondary mt-3">Back to list</a>
 </div>
-
+</div>
+</div>
+</div>
 <%@ include file="jspf/footer.jspf" %>

@@ -3,6 +3,8 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
 <%@ include file="jspf/header.jspf" %>
 
+<div class="container mt-4">
+
 <c:choose>
   <c:when test="${not empty expansion}">
     <h1>Expansion: ${expansion.name}</h1>
@@ -32,4 +34,5 @@
 
 <p><a href="${pageContext.request.contextPath}/expansions"
       class="btn btn-secondary">Back to list</a></p>
+      </div>
 <%@ include file="jspf/footer.jspf" %>
